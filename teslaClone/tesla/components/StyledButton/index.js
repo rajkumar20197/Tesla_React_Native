@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
-import styles from "./styles";
+import styles from "./styles"; // Ensure styles.js exports container, button, and text styles
 
 const StyledButton = (props) => {
 
-  const type = props.type;
+  const {type, content, onPress} = props;
+  
 
   const background = type === 'primary' ? '#171A20CC' : '#FFFFFFA6';
   const textColor = type === 'primary' ? '#FFFFFF' : '#171A20';
@@ -12,11 +13,9 @@ const StyledButton = (props) => {
     <View style={styles.container}> 
       <Pressable
         style={[styles.button, {backgroundColor: background}]}
-        onPress={() => {
-          console.warn('Custom Order was pressed');
-        }}  
+        onPress={() => onPress()}  
         > 
-          <Text style={[styles.text, {color: textColor}]}>Custom Order</Text>
+          <Text style={[styles.text, {color: textColor}]}>{content}</Text>
         </Pressable>          
    </View>
   );
